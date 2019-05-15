@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "625739782287",
+    "firebase_url": "https://heretoclean-876f4.firebaseio.com",
+    "project_id": "heretoclean-876f4",
+    "storage_bucket": "heretoclean-876f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625739782287:android:2d40b9a3cea720ca",
+        "android_client_info": {
+          "package_name": "com.dijouxdamien.here2cleanapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625739782287-9at8npr3e5erl3fs6i5i4on2t0akbbt5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dijouxdamien.here2cleanapp",
+            "certificate_hash": "9fb6a08abd52f472a8cd5452717c8721cda2c266"
+          }
+        },
+        {
+          "client_id": "625739782287-g6i4q29h6nd04bq2url6jtmdlh71a33v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2l_FksGBgTnVX-N0dBw8HKsUnWsBqlh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625739782287-g6i4q29h6nd04bq2url6jtmdlh71a33v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
