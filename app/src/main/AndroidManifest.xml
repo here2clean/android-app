@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dijouxdamien.here2cleanapp">
+    package="com.esgi3D.here2cleanapp">
 
     <application
         android:allowBackup="true"
@@ -9,21 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.esgi3D.here2cleanapp.AssociationActivity"></activity>
+        <activity android:name="com.esgi3D.here2cleanapp.AssociationsActivity" />
+        <activity android:name="com.esgi3D.here2cleanapp.MenuActivity" />
         <activity
-            android:name=".EventActivity"
+            android:name="com.esgi3D.here2cleanapp.EventActivity"
             android:label="@string/title_activity_event"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.esgi3D.here2cleanapp.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.esgi3D.here2cleanapp.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBV_h9mwuPlgtnmid0WLQvGZTRwoGukrfg"/>
     </application>
-
 </manifest>
