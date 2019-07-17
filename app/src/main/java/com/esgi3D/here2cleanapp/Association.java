@@ -45,6 +45,11 @@ public class Association implements Serializable {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public String toString() {
+        return "Association{" + "name='" + name + '\'' + ", rna=" + rna + ", email='" + email + '\'' + ", id=" + id + ", password='" + password + '\'' + ", description='" + description + '\'' + '}';
+    }
 }
 
 

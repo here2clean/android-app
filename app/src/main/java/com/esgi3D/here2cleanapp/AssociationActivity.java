@@ -2,6 +2,7 @@ package com.esgi3D.here2cleanapp;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,13 +22,13 @@ public class AssociationActivity extends AppCompatActivity {
         shopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navToShop("");
+                navToShop(Constants.SHOP_URL);
             }
         });
     }
 
     private void navToShop(String s) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.SHOP_URL));
         startActivity(browserIntent);
     }
 
