@@ -17,12 +17,13 @@
             android:orientation="vertical"
 
             >
+
             <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Association name"
-            android:id="@+id/tv_association_name"
-            />
+                android:id="@+id/tv_association_name"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Association name"
+                android:textColor="#26C281" />
 
         </LinearLayout>
 

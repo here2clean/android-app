@@ -18,24 +18,28 @@
             android:orientation="vertical"
 
             >
-        w<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:text="Event name"
-        android:id="@+id/tv_event_name"
-        />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:id="@+id/tv_event_location"
-            android:text="Location"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:id="@+id/tv_assoc_name"
-            android:text="Assoc name"
-            />
+        w
+
+            <TextView
+                android:id="@+id/tv_event_name"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Event name"
+                android:textColor="#26C281" />
+
+            <TextView
+                android:id="@+id/tv_event_location"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Location"
+                android:textColor="#26C281" />
+
+            <TextView
+                android:id="@+id/tv_assoc_name"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Assoc name"
+                android:textColor="#26C281" />
         </LinearLayout>
 
 
