@@ -9,6 +9,8 @@ public class Association implements Serializable {
     private long id;
     private String password;
     private String description;
+    private String urlImage;
+
 
     private Association() {
     }
@@ -44,6 +46,14 @@ public class Association implements Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     @Override

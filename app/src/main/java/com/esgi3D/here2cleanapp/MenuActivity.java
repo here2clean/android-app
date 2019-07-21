@@ -36,6 +36,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private void NavToEvents() {
         Intent navToEvents = new Intent(MenuActivity.this, MainActivity.class);
+        navToEvents.putExtra("USER_MAIL", getIntent().getStringExtra("USER_MAIL"));
         startActivity(navToEvents);
     }
 

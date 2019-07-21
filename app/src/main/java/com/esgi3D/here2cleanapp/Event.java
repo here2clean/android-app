@@ -8,7 +8,7 @@ public class Event implements Serializable {
     private String desc;
     private String name;
     private String location;
-    private String image;
+    private String urlImage;
     private int association;
 
     public int getId() {
@@ -43,14 +43,6 @@ public class Event implements Serializable {
         this.location = location;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public int getAssociation() {
         return association;
     }
@@ -59,8 +51,16 @@ public class Event implements Serializable {
         this.association = association;
     }
 
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlIimage) {
+        this.urlImage = urlIimage;
+    }
+
     @Override
     public String toString() {
-        return "Event{" + "id=" + id + ", desc='" + desc + '\'' + ", name='" + name + '\'' + ", location='" + location + '\'' + ", image='" + image + '\'' + ", association=" + association + '}';
+        return "Event{" + "id=" + id + ", desc='" + desc + '\'' + ", name='" + name + '\'' + ", location='" + location + '\'' + ", image='" + urlImage + '\'' + ", association=" + association + '}';
     }
 }

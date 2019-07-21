@@ -5,17 +5,17 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HttpAssociationDao implements AssociationDao {
-
+public class HttpAssociationDao  {
+/*
     @Override
     public List<Association> getAssociations() {
         List<Association> output = new ArrayList<Association>();
-        /*GetAllAssociationHttpRequest request = new GetAllAssociationHttpRequest(output,);
+        GetAllAssociationHttpRequest request = new GetAllAssociationHttpRequest(output);
         request.execute(Constants.API_GET_ALL_ASSOC);
         Log.e("assocSize", "Size : "+output.size());
         for (Association o : output) {
             Log.e("assocstag",o.toString());
-        }*/
+        }
         return output;
     }
 
@@ -27,5 +27,5 @@ public class HttpAssociationDao implements AssociationDao {
     @Override
     public Association getAssociationByName(String name) {
         return null;
-    }
+    }*/
 }

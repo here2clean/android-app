@@ -3,6 +3,7 @@ package com.esgi3D.here2cleanapp;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
@@ -14,6 +15,10 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.esgi3D.here2cleanapp.Requests.EventRequests;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -34,9 +39,17 @@ public class MainActivity extends ListActivity {
         ArrayAdapter<Event> events = new EventAdapter(this,0,new ArrayList<Event>());
         setListAdapter(events);
 
-        RequestQueue q = Volley.newRequestQueue(this);
 
-        q.add(new EventRequests(this).GetAllEvents());
+        FirebaseAuth.getInstance().getAccessToken(true ).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+            @Override
+            public void onComplete(@NonNull Task<GetTokenResult> task) {
+                if (!task.isSuccessful()) return;
+                RequestQueue q = Volley.newRequestQueue(context);
+                q.add(new EventRequests(context).GetAllEvents(task.getResult().getToken()));
+            }
+        });
+
+
 
 
     }
