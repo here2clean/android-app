@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -29,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URI;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,82 +51,106 @@ public class EventRequests {
                 EventAdapter eventAdapter = new EventAdapter(context, 0, Arrays.asList(events));
                 ((ListActivity) context).setListAdapter(eventAdapter);
             }
-        }, GetDefaultErrorListner()){
+        }, GetDefaultErrorListner()) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final Map<String, String> header = new HashMap<>();
-                header.put("Authorization", "Bearer "+token);
-                Log.e("Authorization", "getHeaders: "+ header.get("Authorization"));
+                header.put("Authorization", "Bearer " + token);
+                Log.e("Authorization", "getHeaders: " + header.get("Authorization"));
                 return header;
             }
         };
 
 
-
-        return  output;
+        return output;
     }
 
-    public JsonObjectRequest AddVolunteerToAnEvent(final String token, int volunteer, int event) {
-        JSONObject postparams = new JSONObject();
-        try {
-            postparams.put("event_id", event);
-            postparams.put("volunteer_id", volunteer);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return new JsonObjectRequest(Request.Method.POST, Constants.API_ADD_VOLUNTEER_EVENT, postparams, new Response.Listener<JSONObject>() {
+    public StringRequest AddVolunteerToAnEvent(final String token, final long volunteer, final long event) {
+       StringRequest request =  new StringRequest(Request.Method.POST, Constants.API_ADD_VOLUNTEER_EVENT, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 Log.e("", response.toString());
                 Toast.makeText(context, "Inscription confirmée", Toast.LENGTH_SHORT).show();
-                FloatingActionButton fab;
-                fab = ((Activity)context).findViewById(R.id.fabIncription);
-                fab.setBackgroundColor(Color.parseColor("#32CD32"));
             }
-        }, GetDefaultErrorListner()){
+        }, GetDefaultErrorListner()) {
+
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final Map<String, String> header = new HashMap<>();
-                header.put("Authorization", "Bearer "+token);
-                Log.e("Authorization", "getHeaders: "+ header.get("Authorization"));
-                return header;            }
-        }; }
+                header.put("Authorization", "Bearer " + token);
+                return header;
 
-    public JsonObjectRequest RemoveVolunteerToAnEvent(int volunteer, int event) {
-        JSONObject postparams = new JSONObject();
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("volunteer_id","1");
+                params.put("event_id", String.valueOf(event));
+                return params;
+            }
+
+
+        };
+
         try {
-            postparams.put("event_id", event);
-            postparams.put("volunteer_id", volunteer);
-        } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e("REQUEST_X", "AddVolunteerToAnEvent: "+ new String(request.getBody())  );
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
         }
 
-        return new JsonObjectRequest(Request.Method.POST, Constants.API_REMOVE_VOLUNTEER_EVENT, postparams, new Response.Listener<JSONObject>() {
+        return request;
+    }
+
+    public StringRequest RemoveVolunteerToAnEvent(final String token, final int volunteer, final int event) {
+        StringRequest request =  new StringRequest(Request.Method.POST, Constants.API_REMOVE_VOLUNTEER_EVENT, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 Log.e("", response.toString());
-                Toast.makeText(context, "Inscription annulée", Toast.LENGTH_SHORT).show();
-                FloatingActionButton fab;
-                fab = ((Activity)context).findViewById(R.id.fabIncription);
-                fab.setBackgroundColor(Color.parseColor("#32CD32"));
+                Toast.makeText(context, "Inscription confirmée", Toast.LENGTH_SHORT).show();
             }
-        }, GetDefaultErrorListner()); }
+        }, GetDefaultErrorListner()) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                final Map<String, String> header = new HashMap<>();
+                header.put("Authorization", "Bearer " + token);
+                return header;
+
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("volunteer_id","1");
+                params.put("event_id", String.valueOf(event));
+                return params;
+            }
 
 
+        };
+
+        try {
+            Log.e("REQUEST_X", "AddVolunteerToAnEvent: "+ new String(request.getBody())  );
+        } catch (AuthFailureError authFailureError) {
+            authFailureError.printStackTrace();
+        }
+
+        return request;
+    }
 
 
     private Response.ErrorListener GetDefaultErrorListner() {
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("error volley", error.toString());
+                Log.e("error", "onErrorResponse: ");
+
+                error.printStackTrace();
                 Toast.makeText(context, "Quelque chose ne s'est pas passé comme prévu", Toast.LENGTH_SHORT).show();
             }
         };
     }
-
-
 
 
 }

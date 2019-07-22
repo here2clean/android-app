@@ -9,11 +9,11 @@ public class MockEventDAO implements EventDAO {
         List<Event> events = new ArrayList<Event>();
         Event event1 = new Event();
         event1.setName("Nettoyage Plage");
-        event1.setDesc("Ceci est une description");
+        event1.setDescription("Ceci est une description");
 
         Event event2 = new Event();
         event2.setName("Nettoyage de lac");
-        event2.setDesc("Ceci est une autre description");
+        event2.setDescription("Ceci est une autre description");
 
         events.add(event1);
         events.add(event2);

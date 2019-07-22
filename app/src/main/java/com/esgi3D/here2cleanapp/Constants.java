@@ -14,4 +14,7 @@ public class Constants {
 
     public final static String API_GET_ALL_ASSOC = REMOTE_API_URL+ASSOC_API+"/all";
     public static final String API_GET_ALL_EVENT = REMOTE_API_URL+EVENT_API+"/all";
+
+    public static final String API_VOLUNTEER_SIGNUP = REMOTE_API_URL+VOLUNTEER_API+"/signUp";
+
 }

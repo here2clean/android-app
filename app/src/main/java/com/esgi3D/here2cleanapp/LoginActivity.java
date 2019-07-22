@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     VolunteerDAO volunteerDAO;
     private Button login;
+    private Button signUp;
 
     private EditText email;
     private EditText pw;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         login = findViewById(R.id.btn_login);
+        signUp = findViewById(R.id.btn_sgnup);
 
         email = (EditText) findViewById(R.id.emailET);
         pw = (EditText) findViewById(R.id.pwET);
@@ -45,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
 
         login.setOnClickListener(signWithEmail);
+        signUp.setOnClickListener(goToSignUpForm);
+
 
     }
 
@@ -61,6 +65,14 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
             signIn();
+        }
+    };
+
+    View.OnClickListener goToSignUpForm = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+                Intent signUpIntent = new Intent(LoginActivity.this, SignUpActivity.class);
+                startActivity(signUpIntent);
         }
     };
 
@@ -84,6 +96,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 
 }

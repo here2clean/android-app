@@ -20,7 +20,8 @@ public class AssociationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         association = (Association) getIntent().getExtras().get(String.valueOf(R.string.ASSOCIATION));
-        tvDescription = (TextView)findViewById(R.id.tv_assoc_description_detail);
+        tvDescription = findViewById(R.id.tv_assoc_description);
+        if(null != tvDescription)
         tvDescription.setText(association.getDescription());
 
 

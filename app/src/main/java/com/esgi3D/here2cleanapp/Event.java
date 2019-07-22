@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class Event implements Serializable {
     private int id;
-    private String desc;
+    private String description;
     private String name;
     private String location;
     private String urlImage;
@@ -17,14 +17,6 @@ public class Event implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public String getName() {
@@ -59,8 +51,16 @@ public class Event implements Serializable {
         this.urlImage = urlIimage;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
-        return "Event{" + "id=" + id + ", desc='" + desc + '\'' + ", name='" + name + '\'' + ", location='" + location + '\'' + ", image='" + urlImage + '\'' + ", association=" + association + '}';
+        return "Event{" + "id=" + id + ", desc='" + description + '\'' + ", name='" + name + '\'' + ", location='" + location + '\'' + ", image='" + urlImage + '\'' + ", association=" + association + '}';
     }
 }

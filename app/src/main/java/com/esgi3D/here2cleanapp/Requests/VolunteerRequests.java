@@ -11,12 +11,14 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.esgi3D.here2cleanapp.Constants;
 import com.esgi3D.here2cleanapp.LoginActivity;
 import com.esgi3D.here2cleanapp.MenuActivity;
 import com.esgi3D.here2cleanapp.R;
 import com.esgi3D.here2cleanapp.Volunteer;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 
 import org.json.JSONException;
@@ -33,7 +35,7 @@ public class VolunteerRequests {
         this.context = context;
     }
 
-    public JsonObjectRequest GetVolunteerByMail(final String token, String mail){
+    public JsonObjectRequest GetVolunteerByMail(final String token, String mail) {
         JSONObject postparams = new JSONObject();
         try {
             postparams.put("mail", mail);
@@ -44,18 +46,19 @@ public class VolunteerRequests {
         return new JsonObjectRequest(Request.Method.POST, Constants.API_GET_VOLUNTEER_BY_MAIL, postparams, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Volunteer volunteer= new Gson().fromJson(response.toString(),Volunteer.class);
+                Volunteer volunteer = new Gson().fromJson(response.toString(), Volunteer.class);
                 final Intent goToMain = new Intent(context, MenuActivity.class);
-                goToMain.putExtra("VOLUNTEER",goToMain);
+                goToMain.putExtra("VOLUNTEER", goToMain);
                 context.startActivity(goToMain);
             }
-        }, GetDefaultErrorListner()){
+        }, GetDefaultErrorListner()) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 final Map<String, String> header = new HashMap<>();
-                header.put("Authorization", "Bearer "+token);
-                Log.e("Authorization", "getHeaders: "+ header.get("Authorization"));
-                return header;            }
+                header.put("Authorization", "Bearer " + token);
+                Log.e("Authorization", "getHeaders: " + header.get("Authorization"));
+                return header;
+            }
         };
     }
 
@@ -69,4 +72,39 @@ public class VolunteerRequests {
             }
         };
     }
+
+    public StringRequest SignUp(final String mail, final String pwd, final String name, final String surname) {
+        StringRequest output = new StringRequest(Request.Method.POST, Constants.API_VOLUNTEER_SIGNUP, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(context, "Inscription réussie", Toast.LENGTH_SHORT).show();
+                Intent login = new Intent(context, LoginActivity.class);
+                context.startActivity(login);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "Inscription impossible", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+            }
+
+
+        }){
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                Volunteer v = new Volunteer(mail,pwd,surname,name);
+                Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").serializeNulls().serializeNulls().create();
+                String output = gson.toJson(v);
+                Log.e("Body", "getBody: "+ output );
+                return output.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+        };
+        return output;
+    }
+
 }
